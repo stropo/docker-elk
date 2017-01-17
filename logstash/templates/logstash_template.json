@@ -1,0 +1,82 @@
+{
+  "template" : "*",
+  "settings" : {
+    "index.refresh_interval" : "5s",
+    "number_of_shards": 1,
+    "number_of_replicas": 0
+  },
+  "mappings" : {
+    "_default_" : {
+      "_all" : {"enabled" : false},
+      "dynamic_templates" : [ {
+        "string_fields" : {
+          "match" : "*",
+          "match_mapping_type" : "string",
+          "mapping" : {
+            "type": "keyword", "ignore_above" : 256,
+            "fields" : {
+               "analyzed" : {
+                  "type" : "text",
+                  "norms": { "enabled": false },
+                  "fielddata" : { "format" : "disabled" }
+              }
+            }
+          }
+        }
+      }, {
+        "float_fields" : {
+          "match" : "*",
+          "match_mapping_type" : "float",
+          "mapping" : { "type" : "float" }
+        }
+      }, {
+        "double_fields" : {
+          "match" : "*",
+          "match_mapping_type" : "double",
+          "mapping" : { "type" : "double" }
+        }
+      }, {
+        "byte_fields" : {
+          "match" : "*",
+          "match_mapping_type" : "byte",
+          "mapping" : { "type" : "byte" }
+        }
+      }, {
+        "short_fields" : {
+          "match" : "*",
+          "match_mapping_type" : "short",
+          "mapping" : { "type" : "short" }
+        }
+      }, {
+        "integer_fields" : {
+          "match" : "*",
+          "match_mapping_type" : "integer",
+          "mapping" : { "type" : "integer" }
+        }
+      }, {
+        "long_fields" : {
+          "match" : "*",
+          "match_mapping_type" : "long",
+          "mapping" : { "type" : "long" }
+        }
+      }, {
+        "date_fields" : {
+          "match" : "*",
+          "match_mapping_type" : "date",
+          "mapping" : { "type" : "date" }
+        }
+      }, {
+        "geo_point_fields" : {
+          "match" : "*",
+          "match_mapping_type" : "geo_point",
+          "mapping" : { "type" : "geo_point" }
+        }
+      } ],
+      "properties" : {
+        "@timestamp": { "type": "date" },
+        "@version": { "type": "keyword" },
+        "remote_addr": { "type": "ip" }
+      }
+    }
+  }
+}

@@ -4,29 +4,35 @@ services:
   elasticsearch:
     build: elasticsearch/
     ports:
-      - "9200:9200"
-      - "9300:9300"
+      - "9201:9201"
+      - "9301:9301"
     environment:
-      ES_JAVA_OPTS: "-Xms1g -Xmx1g"
+      ES_JAVA_OPTS: "-Xms6g -Xmx6g"
     networks:
       - docker_elk
+    volumes:
+      - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - /storage/logstash_nginx/elasticsearch:/usr/share/elasticsearch/data
   logstash:
     build: logstash/
     command: -f /etc/logstash/conf.d/
     volumes:
       - ./logstash/config:/etc/logstash/conf.d
+      - ./logstash/templates:/etc/logstash/templates
     ports:
-      - "5000:5000"
+      - "5544:5544/udp"
     networks:
       - docker_elk
     depends_on:
       - elasticsearch
+    environment:
+      - LS_HEAP_SIZE=2048m
   kibana:
     build: kibana/
     volumes:
       - ./kibana/config/:/etc/kibana/
     ports:
-      - "5601:5601"
+      - "5602:5602"
     networks:
       - docker_elk
     depends_on:
