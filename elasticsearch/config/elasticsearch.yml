@@ -105,11 +105,6 @@ node.data: true
 
 # Set the number of shards (splits) of an index (5 by default):
 #
-index.number_of_shards: 1
-
-# Set the number of replicas (additional copies) of an index (1 by default):
-#
-index.number_of_replicas: 0
 
 # Note, that for development on a local machine, with small indices, it usually
 # makes sense to "disable" the distributed features:
@@ -446,7 +441,3 @@ action.destructive_requires_name: true
 #indices.fielddata.cache.expire: 6h
 #indices.cache.filter.size: 15%
 #indices.cache.filter.expire: 6h
-
-# Indexing Settings for Writes
-index.refresh_interval: 5s
-#index.translog.flush_threshold_ops: 50000
