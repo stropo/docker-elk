@@ -29,7 +29,7 @@
 # Cluster name identifies your cluster for auto-discovery. If you're running
 # multiple clusters on the same network, make sure you're using unique names.
 #
-cluster.name: elasticsearch_logstash
+cluster.name: elasticsearch_logstash_elastic
 
 
 #################################### Node #####################################
@@ -38,7 +38,7 @@ cluster.name: elasticsearch_logstash
 # from configuring them manually. You can tie this node to a specific name:
 #
 #node.name: "Franz Kafka"
-node.name: "Elasticsearch Logstash"
+node.name: "Elasticsearch Logstash Elastic"
 
 # Every node can be configured to allow or deny being eligible as the master,
 # and to allow or deny to store the data.
@@ -212,7 +212,7 @@ network.host: 0.0.0.0
 
 # Set a custom port for the node to node communication (9300 by default):
 #
-transport.tcp.port: 9301
+transport.tcp.port: 9302
 
 # Enable compression for all communication between nodes (disabled by default):
 #
@@ -220,7 +220,7 @@ transport.tcp.port: 9301
 
 # Set a custom port to listen for HTTP traffic:
 #
-http.port: 9201
+http.port: 9202
 
 # Set a custom allowed content length:
 #
